@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDE MÓVEIS - Catálogo Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-button">
+            <button class="hamburger-btn" id="hamburger-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div class="header-left">
+            <nav class="nav-menu">
+                <a href="#" class="nav-item" id="about-btn">SOBRE</a>
+                <a href="#" class="nav-item" id="ata-info-btn">INFORMAÇÕES DA ATA</a>
+            </nav>
+        </div>
+        <div class="header-center">
+            <div class="logo"><img src="assets/images/logo.png" alt="EDE MÓVEIS"></div>
+        </div>
+        <div class="header-right">
+            <button class="favorites-btn" id="favorites-btn" title="Meus Favoritos">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button class="contact-btn" id="header-contact-btn">
+                ENTRE EM CONTATO
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-logo">
+                    <img src="assets/images/logo.png" alt="EDE MÓVEIS">
+                </div>
+                <button class="mobile-menu-close" id="mobile-menu-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="#" class="mobile-nav-item" id="mobile-about-btn">
+                    <i class="fas fa-info-circle"></i>
+                    SOBRE
+                </a>
+                <a href="#" class="mobile-nav-item" id="mobile-ata-info-btn">
+                    <i class="fas fa-file-text"></i>
+                    INFORMAÇÕES DA ATA
+                </a>
+                <a href="#" class="mobile-nav-item" id="mobile-contact-btn">
+                    <i class="fas fa-phone"></i>
+                    ENTRE EM CONTATO
+                </a>
+                <a href="#" class="mobile-nav-item favorites" id="mobile-favorites-btn">
+                    <i class="fas fa-heart"></i>
+                    MEUS FAVORITOS
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Fixo -->
+    <section class="hero-fixed">
+        <h1 class="hero-title"><span class="hero-title-highlight">CATÁLOGO DIGITAL</span> EDE MÓVEIS</h1>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Products Section Header -->
+        <section class="products-header">
+            <div class="products-title-section">
+                <h2 class="products-title">PRODUTOS <span class="products-count">(<span id="products-count">42</span>)</span></h2>
+                
+                <!-- Desktop Categories Navigation -->
+                <nav class="categories-nav desktop-categories">
+                    <button class="category-btn active" data-category="all">TODOS</button>
+                    <button class="category-btn" data-category="estantes">ESTANTES</button>
+                    <button class="category-btn" data-category="bibliotecas">BIBLIOTECAS</button>
+                    <button class="category-btn" data-category="armarios">ARMÁRIOS</button>
+                    <button class="category-btn" data-category="roupeiros">ROUPEIROS</button>
+                    <button class="category-btn" data-category="armazenagem">ARMAZENAGEM</button>
+                    <button class="category-btn" data-category="arquivos">ARQUIVOS</button>
+                    <button class="category-btn" data-category="camas">CAMAS</button>
+                </nav>
+                
+                <!-- Mobile Categories Dropdown -->
+                <div class="mobile-categories-dropdown">
+                    <button class="mobile-dropdown-btn" id="mobile-dropdown-btn">
+                        <span class="selected-category">TODOS</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="mobile-dropdown-menu" id="mobile-dropdown-menu">
+                        <button class="mobile-dropdown-item active" data-category="all">TODOS</button>
+                        <button class="mobile-dropdown-item" data-category="estantes">ESTANTES</button>
+                        <button class="mobile-dropdown-item" data-category="bibliotecas">BIBLIOTECAS</button>
+                        <button class="mobile-dropdown-item" data-category="armarios">ARMÁRIOS</button>
+                        <button class="mobile-dropdown-item" data-category="roupeiros">ROUPEIROS</button>
+                        <button class="mobile-dropdown-item" data-category="armazenagem">ARMAZENAGEM</button>
+                        <button class="mobile-dropdown-item" data-category="arquivos">ARQUIVOS</button>
+                        <button class="mobile-dropdown-item" data-category="camas">CAMAS</button>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-grid" id="products-grid">
+            <!-- Products will be dynamically generated here -->
+        </section>
+
+        <!-- Load More Button -->
+        <div class="load-more-section">
+            <button id="load-more-btn" class="load-more-btn">
+                <span class="btn-text">CARREGAR MAIS</span>
+                <div class="btn-loading">
+                    <div class="spinner"></div>
+                </div>
+            </button>
+        </div>
+
+        <!-- Banners Section 
+        <section class="banners-section">
+            <div class="banner-container">
+                <div class="banner banner-1">
+                </div>
+                <div class="banner banner-2">
+                </div>
+            </div>
+        </section>
+        -->
+
+        <!-- Footer Customizado -->
+        <footer class="custom-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.png" alt="EDE MÓVEIS">
+                </div>
+                <div class="footer-info">
+                    <h2 class="footer-company-name">EDE <span class="footer-company-light">MÓVEIS</span></h2>
+                </div>
+                <div class="footer-site">
+                    <a href="#" class="footer-link">www.edemoveis.com.br</a>
+                </div>
+                
+            </div>
+
+        </footer>
+
+        <div class="copyright">
+            <div class="copy"><i class="fas fa-copyright"></i> Todos os direitos reservados.</div>
+            <div class="social-links">
+                    <a href="https://www.facebook.com/edemoveis" target="_blank" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/edemoveis" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/edemoveis" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+            </div>
+        </div>
+
+        <!-- Linhas -->
+        <div class="decor-lines">
+            <span class="line-1"></span>
+            <span class="line-2"></span>
+            <span class="line-3"></span>
+            <span class="line-4"></span>
+        </div>
+
+        <div class="by">
+            <a href="https://wa.me/5519991613636" target="_blank"><img src="assets/images/buenodesign.png" alt="Bueno Design"></a>
+        </div>
+
+    </main>
+    
+    <!-- Os modais são carregados dinamicamente via modal-loader.js -->
+    
+    <!-- Scripts -->
+    <script src="components/modal-loader.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
