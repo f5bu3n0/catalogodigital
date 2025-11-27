@@ -1,384 +1,58 @@
-// Dados dos produtos (simulando uma API)
-const products = [
-    {
-        id: 1,
-        specifications: "ITEM 001",
-        name: "Armário FEPOM",
-        description: "",
-        image: "assets/images/products/produto_01.jpeg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 2,
-        specifications: "ITEM 002",
-        name: "Roupeiro Infantil 4 Portas",
-        description: "",
-        image: "assets/images/products/produto_02.jpeg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 3,
-        specifications: "ITEM 003",
-        name: "Cama Beliche COLOG",
-        description: "",
-        image: "assets/images/products/produto_03.jpeg",
-        fullDescription: "",
-        category: "camas",
-    },
-    {
-        id: 4,
-        specifications: "ITEM 004",
-        name: "Carrinho Biblioteca",
-        description: "",
-        image: "assets/images/products/produto_04.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 5,
-        specifications: "ITEM 005",
-        name: "Carrinho Biblioteca",
-        description: "",
-        image: "assets/images/products/produto_05.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 6,
-        specifications: "ITEM 006",
-        name: "Estante Infantil Dupla Face - Flor",
-        description: "",
-        image: "assets/images/products/produto_06.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 7,
-        specifications: "ITEM 007",
-        name: "Armário Para Pastas Suspensas - 4 gavetas duplas",
-        description: "",
-        image: "assets/images/products/produto_07.jpeg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 8,
-        specifications: "ITEM 008",
-        name: "Estante de Aço",
-        description: "",
-        image: "assets/images/products/produto_08.jpeg",
-        fullDescription: "",
-        category: "estantes",
-    },
-    {
-        id: 9,
-        specifications: "ITEM 009",
-        name: "Estante Simples Face Infantil",
-        description: "",
-        image: "assets/images/products/produto_09.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 10,
-        specifications: "ITEM 010",
-        name: "Estante Expositora Infantil - Flor",
-        description: "",
-        image: "assets/images/products/produto_10.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 11,
-        specifications: "ITEM 011",
-        name: "Estante Face Dupla com Painel",
-        description: "",
-        image: "assets/images/products/produto_11.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 12,
-        specifications: "ITEM 012",
-        name: "Estante Expositora com Painel",
-        description: "",
-        image: "assets/images/products/produto_12.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 13,
-        specifications: "ITEM 013",
-        name: "Estante Expositora Infantil - Flor",
-        description: "",
-        image: "assets/images/products/produto_13.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 14,
-        specifications: "ITEM 014",
-        name: "Armário com Portas Transparentes",
-        description: "",
-        image: "assets/images/products/produto_14.jpeg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 15,
-        specifications: "ITEM 015",
-        name: "Estante para Armazenagem com Prateleira em OSB",
-        description: "",
-        image: "assets/images/products/produto_15.jpeg",
-        fullDescription: "",
-        category: "armazenagem",
-    },
-    {
-        id: 16,
-        specifications: "ITEM 016",
-        name: "Estante para Armazenagem com Prateleira em OSB",
-        description: "",
-        image: "assets/images/products/produto_16.jpeg",
-        fullDescription: "",
-        category: "armazenagem",
-    },
-    {
-        id: 17,
-        specifications: "ITEM 017",
-        name: "Roupeiro 4 Portas - Fechadura Eletronica",
-        description: "",
-        image: "assets/images/products/produto_17.jpeg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 18,
-        specifications: "ITEM 018",
-        name: "Roupeiro 4 Portas",
-        description: "",
-        image: "assets/images/products/produto_18.jpeg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 19,
-        specifications: "ITEM 019",
-        name: "Roupeiro 4 Portas",
-        description: "",
-        image: "assets/images/products/produto_19.jpeg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 20,
-        specifications: "ITEM 020",
-        name: "Roupeiro Infantil 6 Portas",
-        description: "",
-        image: "assets/images/products/produto_20.jpeg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 21,
-        specifications: "ITEM 021",
-        name: "Arquivo 4 gavetas",
-        description: "",
-        image: "assets/images/products/produto_21.jpeg",
-        fullDescription: "",
-        category: "arquivos",
-    },
-    {
-        id: 22,
-        specifications: "ITEM 022",
-        name: "Armário de Porta de Abrir",
-        description: "",
-        image: "assets/images/products/produto_22.jpeg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 23,
-        specifications: "ITEM 023",
-        name: "Armário para Pasta AZ",
-        description: "",
-        image: "assets/images/products/produto_23.jpeg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 24,
-        specifications: "ITEM 024",
-        name: "Roupeiro de 8 Portas",
-        description: "",
-        image: "assets/images/products/produto_24.jpeg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 25,
-        specifications: "ITEM 025",
-        name: "Painel de Fechamento Estante Face Dupla",
-        description: "",
-        image: "assets/images/products/produto_25.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 26,
-        specifications: "ITEM 026",
-        name: "Painel de Fechamento Estante Face Simples",
-        description: "",
-        image: "assets/images/products/produto_26.jpeg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 27,
-        specifications: "ITEM 027",
-        name: "Estante para Armazenagem com Prateleira em OSB",
-        description: "",
-        image: "assets/images/products/produto_27.jpeg",
-        fullDescription: "",
-        category: "armazenagem",
-    },
-    {
-        id: 28,
-        specifications: "ITEM 028",
-        name: "Armário de Porta de Abrir",
-        description: "",
-        image: "assets/images/products/produto_28.jpg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 29,
-        specifications: "ITEM 029",
-        name: "Roupeiro Exército",
-        description: "",
-        image: "assets/images/products/produto_29.jpg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 30,
-        specifications: "ITEM 030",
-        name: "Armário de Porta Individuais",
-        description: "",
-        image: "assets/images/products/produto_30.jpg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 31,
-        specifications: "ITEM 031",
-        name: "Armário de Porta de Correr",
-        description: "",
-        image: "assets/images/products/produto_31.jpg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 32,
-        specifications: "ITEM 032",
-        name: "Armário de Porta de Vidro",
-        description: "",
-        image: "assets/images/products/produto_32.jpg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 33,
-        specifications: "ITEM 033",
-        name: "Armário de Limpeza",
-        description: "",
-        image: "assets/images/products/produto_33.jpg",
-        fullDescription: "",
-        category: "armarios",
-    },
-    {
-        id: 34,
-        specifications: "ITEM 034",
-        name: "Arquivo de 4 gavetas",
-        description: "",
-        image: "assets/images/products/produto_34.jpg",
-        fullDescription: "",
-        category: "arquivos",
-    },
-    {
-        id: 35,
-        specifications: "ITEM 035",
-        name: "Arquivo Misto Ofício 5 gavetas",
-        description: "",
-        image: "assets/images/products/produto_35.jpg",
-        fullDescription: "",
-        category: "arquivos",
-    },
-    {
-        id: 36,
-        specifications: "ITEM 036",
-        name: "Arquivo Misto Ofício 6 Gavetas",
-        description: "",
-        image: "assets/images/products/produto_36.jpg",
-        fullDescription: "",
-        category: "arquivos",
-    },
-    {
-        id: 37,
-        specifications: "ITEM 037",
-        name: "Estante Biblioteca Face Dupla",
-        description: "",
-        image: "assets/images/products/produto_37.jpg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 38,
-        specifications: "ITEM 038",
-        name: "Estante Biblioteca Face Simples",
-        description: "",
-        image: "assets/images/products/produto_38.jpg",
-        fullDescription: "",
-        category: "bibliotecas",
-    },
-    {
-        id: 39,
-        specifications: "ITEM 039",
-        name: "Estante de Aço com Painéis de Fechamento",
-        description: "",
-        image: "assets/images/products/produto_39.jpg",
-        fullDescription: "",
-        category: "estantes",
-    },
-    {
-        id: 40,
-        specifications: "ITEM 040",
-        name: "Roupeiro de 3 Portas Inteiriças",
-        description: "",
-        image: "assets/images/products/produto_40.jpg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 41,
-        specifications: "ITEM 041",
-        name: "Roupeiro de 12 Portas",
-        description: "",
-        image: "assets/images/products/produto_41.jpg",
-        fullDescription: "",
-        category: "roupeiros",
-    },
-    {
-        id: 42,
-        specifications: "ITEM 042",
-        name: "Roupeiro de 16 Portas",
-        description: "",
-        image: "assets/images/products/produto_42.jpg",
-        fullDescription: "",
-        category: "roupeiros"
+// Dados das categorias iniciais carregados de products-data.js
+
+// Inicializar categorias do localStorage ou usar dados iniciais
+let categories = [];
+try {
+    const storedCategories = localStorage.getItem('categories');
+    if (storedCategories) {
+        categories = JSON.parse(storedCategories);
     }
-];
+} catch (e) {
+    console.error('Error parsing categories from localStorage:', e);
+    localStorage.removeItem('categories');
+}
+
+// Ensure categories is an array
+if (!Array.isArray(categories)) {
+    categories = [];
+}
+
+if (typeof appCategoriesData !== 'undefined') {
+    if (categories.length === 0) {
+        categories = appCategoriesData;
+        localStorage.setItem('categories', JSON.stringify(categories));
+    }
+} else {
+    console.error('appCategoriesData is not defined. Check products-data.js loading.');
+}
+
+// Dados dos produtos iniciais carregados de products-data.js
+
+// Inicializar produtos do localStorage ou usar dados iniciais
+let products = [];
+try {
+    const storedProducts = localStorage.getItem('products');
+    if (storedProducts) {
+        products = JSON.parse(storedProducts);
+    }
+} catch (e) {
+    console.error('Error parsing products from localStorage:', e);
+    localStorage.removeItem('products');
+}
+
+// Ensure products is an array
+if (!Array.isArray(products)) {
+    products = [];
+}
+
+if (typeof appProductsData !== 'undefined') {
+    if (products.length === 0) {
+        products = appProductsData;
+    }
+} else {
+    console.error('appProductsData is not defined. Check products-data.js loading.');
+    if (!products) products = [];
+}
 
 // Variável para controlar o filtro ativo
 let currentFilter = 'all';
@@ -576,6 +250,110 @@ window.openFormModal = function() {
     }
 };
 
+// Função para renderizar os botões de categoria
+function renderCategoryButtons() {
+    const desktopNav = document.querySelector('.categories-nav.desktop-categories');
+    const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+    
+    if (!desktopNav || !mobileDropdownMenu) return;
+    
+    // Limpar botões existentes (exceto "TODOS")
+    // Desktop
+    desktopNav.innerHTML = '<button class="category-btn active" data-category="all">TODOS</button>';
+    
+    // Mobile
+    mobileDropdownMenu.innerHTML = '<button class="mobile-dropdown-item active" data-category="all">TODOS</button>';
+    
+    // Adicionar categorias dinâmicas
+    categories.forEach(category => {
+        // Desktop
+        const btn = document.createElement('button');
+        btn.className = 'category-btn';
+        btn.dataset.category = category.slug;
+        btn.textContent = category.name;
+        desktopNav.appendChild(btn);
+        
+        // Mobile
+        const mobileBtn = document.createElement('button');
+        mobileBtn.className = 'mobile-dropdown-item';
+        mobileBtn.dataset.category = category.slug;
+        mobileBtn.textContent = category.name;
+        mobileDropdownMenu.appendChild(mobileBtn);
+    });
+    
+    // Re-anexar event listeners
+    attachCategoryListeners();
+}
+
+// Função para anexar listeners aos botões de categoria
+function attachCategoryListeners() {
+    // Desktop
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remover classe active de todos os botões
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            
+            // Adicionar classe active ao botão clicado
+            this.classList.add('active');
+            
+            // Atualizar filtro ativo
+            currentFilter = this.dataset.category;
+            
+            // Resetar página para 1 quando mudar filtro
+            currentPage = 1;
+            
+            // Re-renderizar produtos
+            renderProducts();
+        });
+    });
+
+    // Mobile
+    document.querySelectorAll('.mobile-dropdown-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remover classe active de todos os itens
+            document.querySelectorAll('.mobile-dropdown-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            
+            // Adicionar classe active ao item clicado
+            this.classList.add('active');
+            
+            // Atualizar texto do botão dropdown
+            const selectedText = this.textContent;
+            const selectedCategory = document.querySelector('.selected-category');
+            if (selectedCategory) {
+                selectedCategory.textContent = selectedText;
+            }
+            
+            // Atualizar categoria ativa correspondente no desktop
+            const correspondingBtn = document.querySelector(`.category-btn[data-category="${this.dataset.category}"]`);
+            if (correspondingBtn) {
+                correspondingBtn.classList.add('active');
+            }
+            
+            // Atualizar filtro ativo
+            currentFilter = this.dataset.category;
+            
+            // Resetar página para 1 quando mudar filtro
+            currentPage = 1;
+            
+            // Re-renderizar produtos
+            renderProducts();
+            
+            // Fechar dropdown
+            const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+            const mobileDropdownBtn = document.getElementById('mobile-dropdown-btn');
+            if (mobileDropdownMenu && mobileDropdownBtn) {
+                mobileDropdownMenu.classList.remove('open');
+                mobileDropdownBtn.classList.remove('open');
+            }
+        });
+    });
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -587,6 +365,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Renderizar produtos iniciais
     renderProducts();
+    
+    // Renderizar botões de categoria
+    renderCategoryButtons();
     
     // Atualizar contador de favoritos na inicialização
     updateFavoritesCount();
@@ -679,26 +460,7 @@ function initializeEventListeners() {
     // Verificar novamente se os elementos dos modais existem após carregamento
 
     // Event listeners para os botões de categoria
-    document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Remover classe active de todos os botões
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            
-            // Adicionar classe active ao botão clicado
-            this.classList.add('active');
-            
-            // Atualizar filtro ativo
-            currentFilter = this.dataset.category;
-            
-            // Resetar página para 1 quando mudar filtro
-            currentPage = 1;
-            
-            // Re-renderizar produtos
-            renderProducts();
-        });
-    });
+    // Removido: listeners agora são anexados em attachCategoryListeners()
 
     // Mobile Categories Dropdown Event Listeners
     const mobileDropdownBtn = document.getElementById('mobile-dropdown-btn');
@@ -729,44 +491,7 @@ function initializeEventListeners() {
     }
     
     // Mobile dropdown items event listeners
-    document.querySelectorAll('.mobile-dropdown-item').forEach(item => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Remover classe active de todos os itens
-            document.querySelectorAll('.mobile-dropdown-item').forEach(i => i.classList.remove('active'));
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            
-            // Adicionar classe active ao item clicado
-            this.classList.add('active');
-            
-            // Atualizar texto do botão dropdown
-            const selectedText = this.textContent;
-            const selectedCategory = document.querySelector('.selected-category');
-            if (selectedCategory) {
-                selectedCategory.textContent = selectedText;
-            }
-            
-            // Atualizar categoria ativa correspondente no desktop
-            const correspondingBtn = document.querySelector(`.category-btn[data-category="${this.dataset.category}"]`);
-            if (correspondingBtn) {
-                correspondingBtn.classList.add('active');
-            }
-            
-            // Atualizar filtro ativo
-            currentFilter = this.dataset.category;
-            
-            // Resetar página para 1 quando mudar filtro
-            currentPage = 1;
-            
-            // Re-renderizar produtos
-            renderProducts();
-            
-            // Fechar dropdown
-            mobileDropdownMenu.classList.remove('open');
-            mobileDropdownBtn.classList.remove('open');
-        });
-    });
+    // Removido: listeners agora são anexados em attachCategoryListeners()
 
     // Event listener para o botão "Carregar Mais"
     const loadMoreBtn = document.getElementById('load-more-btn');
@@ -787,7 +512,7 @@ function initializeEventListeners() {
             openContactFormModal();
             return;
         }
-        
+
         // SOBRE
         if (e.target.id === 'about-btn') {
             e.preventDefault();
@@ -917,15 +642,6 @@ function initializeEventListeners() {
         const productId = contactModal?.dataset.currentProductId || '';
         handleContactAction('whatsapp', productId);
     });
-
-    const contactEmail = document.getElementById('contact-email');
-    if (contactEmail) {
-        contactEmail.addEventListener('click', function() {
-            closeContactModal();
-            setTimeout(() => openContactFormModal(), 100);
-        });
-    } else {
-    }
 
     const contactPhone = document.getElementById('contact-phone');
     if (contactPhone) contactPhone.addEventListener('click', function() {

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDE MÓVEIS - Dashboard</title>
+    <script>
+        // Authentication Check
+        if (sessionStorage.getItem('dashboardAuth') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-item">VOLTAR AO CATÁLOGO</a>
+            </nav>
+        </div>
+        <div class="header-center">
+            <div class="logo"><img src="../assets/images/logo.png" alt="EDE MÓVEIS"></div>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i> ADMIN
+                <button id="logout-btn" style="background: none; border: none; color: white; cursor: pointer; margin-left: 10px;" title="Sair">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Fixo -->
+    <section class="hero-fixed">
+        <h1 class="hero-title"><span class="hero-title-highlight">GESTÃO DE</span> PRODUTOS</h1>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- View Switcher -->
+        <div class="view-switcher">
+            <button id="view-products" class="switcher-btn active">PRODUTOS</button>
+            <button id="view-categories" class="switcher-btn">CATEGORIAS</button>
+        </div>
+
+        <!-- Dashboard Actions -->
+        <section class="dashboard-actions">
+            <button id="add-product-btn" class="action-btn primary">
+                <i class="fas fa-plus"></i> NOVO PRODUTO
+            </button>
+            <button id="add-category-btn" class="action-btn primary" style="display: none;">
+                <i class="fas fa-plus"></i> NOVA CATEGORIA
+            </button>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar...">
+                <i class="fas fa-search"></i>
+            </div>
+        </section>
+
+        <!-- Products Table -->
+        <section id="products-section" class="products-table-container">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Imagem</th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Especificação</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="products-table-body">
+                    <!-- Products will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Categories Table -->
+        <section id="categories-section" class="products-table-container" style="display: none;">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Slug (Valor)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="categories-table-body">
+                    <!-- Categories will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Edit/Add Product Modal -->
+    <div id="product-form-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-form-title">NOVO PRODUTO</h2>
+                <button class="modal-close" id="modal-form-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="product-form" class="product-form">
+                    <input type="hidden" id="product-id">
+                    
+                    <div class="form-group">
+                        <label for="product-name">Nome do Produto</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-category">Categoria</label>
+                        <select id="product-category" required>
+                            <!-- Categories will be populated dynamically -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-spec">Especificação (Item)</label>
+                        <input type="text" id="product-spec" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image">URL da Imagem</label>
+                        <input type="text" id="product-image" placeholder="assets/images/products/..." required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="modal-btn modal-btn-cancel" id="cancel-btn">Cancelar</button>
+                        <button type="submit" class="modal-btn modal-btn-submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit/Add Category Modal -->
+    <div id="category-form-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-category-title">NOVA CATEGORIA</h2>
+                <button class="modal-close" id="modal-category-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="category-form" class="product-form">
+                    <input type="hidden" id="category-id">
+                    
+                    <div class="form-group">
+                        <label for="category-name">Nome da Categoria</label>
+                        <input type="text" id="category-name" required placeholder="Ex: ESTANTES">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category-slug">Slug (Valor interno)</label>
+                        <input type="text" id="category-slug" required placeholder="Ex: estantes">
+                        <small style="color: #666; font-size: 12px;">Use letras minúsculas e sem espaços (ex: armarios-aco)</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="modal-btn modal-btn-cancel" id="category-cancel-btn">Cancelar</button>
+                        <button type="submit" class="modal-btn modal-btn-submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../products-data.js?v=2"></script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>
