@@ -69,7 +69,7 @@
             <table class="products-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th class="id-align">ID</th>
                         <th>Imagem</th>
                         <th>Nome</th>
                         <th>Categoria</th>
@@ -88,7 +88,7 @@
             <table class="products-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th class="id-align">ID</th>
                         <th>Nome</th>
                         <th>Slug (Valor)</th>
                         <th>Ações</th>
@@ -177,8 +177,37 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="product-image">URL da Imagem</label>
-                        <input type="text" id="product-image" placeholder="assets/images/products/..." required>
+                        <label for="product-description">Descrição Curta</label>
+                        <textarea id="product-description" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-full-description">Detalhes Completos</label>
+                        <textarea id="product-full-description" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-technical-specs">Especificações Técnicas</label>
+                        <textarea id="product-technical-specs" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-colors">Cores Disponíveis</label>
+                        <input type="text" id="product-colors" placeholder="Ex: Azul, Vermelho, Branco">
+                        <small style="color: #666; font-size: 12px;">Separe as cores por vírgula</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image-upload">Upload de Imagem</label>
+                        <input type="file" id="product-image-upload" accept="image/*">
+                        <div id="image-preview-container" style="margin-top: 10px; display: none;">
+                            <img id="image-preview" src="" alt="Preview" style="max-width: 100px; max-height: 100px; border-radius: 2px; border: 1px solid #ddd; object-fit: cover;">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image">Ou URL da Imagem</label>
+                        <input type="text" id="product-image" placeholder="assets/images/products/...">
                     </div>
 
                     <div class="form-actions">

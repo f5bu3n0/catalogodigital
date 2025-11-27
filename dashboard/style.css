@@ -98,34 +98,48 @@
     color: #999;
 }
 
+.id-align {
+    text-align: center !important;
+}
+
 .products-table-container {
     background: white;
     border-radius: 2px;
     overflow-x: auto;
-    border: 1px solid #f0f0f0;
+    border: 1px solid #e5e5e5;
 }
 
 .products-table {
     width: 100%;
     border-collapse: collapse;
     font-family: 'Montserrat', sans-serif;
-}
-
-.products-table th,
-.products-table td {
-    padding: 20px;
-    text-align: left;
-    border-bottom: 1px solid #f0f0f0;
-    vertical-align: middle;
+    min-width: 800px;
 }
 
 .products-table th {
-    background-color: #f9f9f9;
-    font-weight: 800;
+    background-color: #f8f8f8;
+    padding: 18px 24px;
+    text-align: left;
+    font-weight: 700;
     color: #535353;
     text-transform: uppercase;
     font-size: 12px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #e5e5e5;
+    white-space: nowrap;
+}
+
+.products-table td {
+    padding: 16px 24px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    height: 85px; /* Fixed height for consistency */
+    box-sizing: border-box;
 }
 
 .products-table tr:last-child td {
@@ -134,19 +148,35 @@
 
 .products-table tr:hover td {
     background-color: #fafafa;
+    color: #333;
 }
 
-.products-table td {
-    color: #666;
-    font-size: 14px;
-    font-weight: 500;
+/* ID Column Style */
+.products-table td:first-child {
+    width: 80px;
+}
+
+.id-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #FBA719;
+    border-radius: 2px;
+    color: #A1356E;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
 }
 
 .products-table img {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     border-radius: 2px;
+    border: 1px solid #eee;
+    display: block;
 }
 
 .table-actions {

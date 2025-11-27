@@ -71,6 +71,26 @@ const categoryForm = document.getElementById('category-form');
 const modalFormTitle = document.getElementById('modal-form-title');
 const modalCategoryTitle = document.getElementById('modal-category-title');
 const productCategorySelect = document.getElementById('product-category');
+const productImageUpload = document.getElementById('product-image-upload');
+const imagePreviewContainer = document.getElementById('image-preview-container');
+const imagePreview = document.getElementById('image-preview');
+let uploadedImage = null;
+
+// Image Upload Listener
+if (productImageUpload) {
+    productImageUpload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedImage = e.target.result;
+                imagePreview.src = uploadedImage;
+                imagePreviewContainer.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+}
 
 // View Switcher Elements
 const viewProductsBtn = document.getElementById('view-products');
@@ -123,7 +143,7 @@ function renderCategoriesTable(categoriesToRender = categories) {
     categoriesToRender.forEach(category => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${category.id}</td>
+            <td class="id-align"><span class="id-badge">${category.id}</span></td>
             <td>${category.name}</td>
             <td>${category.slug}</td>
             <td>
@@ -158,7 +178,7 @@ function renderTable(productsToRender = products) {
 
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${product.id}</td>
+            <td class="id-align"><span class="id-badge">${product.id}</span></td>
             <td><img src="${imagePath}" alt="${product.name}"></td>
             <td>${product.name}</td>
             <td>${categoryName}</td>
@@ -203,9 +223,23 @@ function openModal(isEdit = false) {
     populateCategorySelect(); // Refresh categories
     productFormModal.classList.add('active');
     modalFormTitle.textContent = isEdit ? 'EDITAR PRODUTO' : 'NOVO PRODUTO';
+    
+    // Reset upload state if not editing (or even if editing, until data is loaded)
+    // Actually, editProduct calls openModal(true) AFTER setting values.
+    // But openModal clears values if !isEdit.
+    
     if (!isEdit) {
         productForm.reset();
         document.getElementById('product-id').value = '';
+        uploadedImage = null;
+        imagePreviewContainer.style.display = 'none';
+        imagePreview.src = '';
+        
+        // Clear new fields explicitly (though reset() should handle it if they are part of the form)
+        document.getElementById('product-description').value = '';
+        document.getElementById('product-full-description').value = '';
+        document.getElementById('product-technical-specs').value = '';
+        document.getElementById('product-colors').value = '';
     }
 }
 
@@ -244,13 +278,30 @@ productForm.addEventListener('submit', (e) => {
     const name = document.getElementById('product-name').value;
     const category = document.getElementById('product-category').value;
     const spec = document.getElementById('product-spec').value;
-    const image = document.getElementById('product-image').value;
+    
+    const description = document.getElementById('product-description').value;
+    const fullDescription = document.getElementById('product-full-description').value;
+    const technicalSpecs = document.getElementById('product-technical-specs').value;
+    const colors = document.getElementById('product-colors').value;
+    
+    const urlImage = document.getElementById('product-image').value;
+    const image = uploadedImage || urlImage;
 
     if (id) {
         // Edit
         const index = products.findIndex(p => p.id === parseInt(id));
         if (index !== -1) {
-            products[index] = { ...products[index], name, category, specifications: spec, image };
+            products[index] = { 
+                ...products[index], 
+                name, 
+                category, 
+                specifications: spec, 
+                image,
+                description,
+                fullDescription,
+                technicalSpecs,
+                colors
+            };
         }
     } else {
         // Add
@@ -261,8 +312,10 @@ productForm.addEventListener('submit', (e) => {
             category,
             specifications: spec,
             image,
-            description: "",
-            fullDescription: ""
+            description: description || "",
+            fullDescription: fullDescription || "",
+            technicalSpecs: technicalSpecs || "",
+            colors: colors || ""
         };
         products.push(newProduct);
     }
@@ -306,12 +359,36 @@ categoryForm.addEventListener('submit', (e) => {
 window.editProduct = function(id) {
     const product = products.find(p => p.id === id);
     if (product) {
+        // Reset upload state
+        uploadedImage = null;
+        if (productImageUpload) productImageUpload.value = '';
+
         document.getElementById('product-id').value = product.id;
         document.getElementById('product-name').value = product.name;
         populateCategorySelect(); // Ensure categories are loaded
         document.getElementById('product-category').value = product.category;
         document.getElementById('product-spec').value = product.specifications;
         document.getElementById('product-image').value = product.image;
+        
+        // New fields
+        document.getElementById('product-description').value = product.description || '';
+        document.getElementById('product-full-description').value = product.fullDescription || '';
+        document.getElementById('product-technical-specs').value = product.technicalSpecs || '';
+        document.getElementById('product-colors').value = product.colors || '';
+        
+        // Show current image preview
+        if (product.image) {
+             let imgPath = product.image;
+             // Adjust path for preview if it's a relative path from root
+             if (!imgPath.startsWith('data:') && !imgPath.startsWith('http') && !imgPath.startsWith('/') && !imgPath.startsWith('../')) {
+                 imgPath = '../' + imgPath;
+             }
+             imagePreview.src = imgPath;
+             imagePreviewContainer.style.display = 'block';
+        } else {
+             imagePreviewContainer.style.display = 'none';
+        }
+
         openModal(true);
     }
 };
